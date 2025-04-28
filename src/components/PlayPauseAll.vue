@@ -3,25 +3,25 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue'
+import { ref, defineProps } from 'vue';
 
 const props = defineProps<{
-  sounds: string[]
-}>()
+  sounds: string[];
+}>();
 
-const allPlaying = ref(false)
+const allPlaying = ref(false);
 
 const toggleAllPlaying = () => {
-  allPlaying.value = !allPlaying.value
+  allPlaying.value = !allPlaying.value;
   for (const sound of props.sounds) {
-    const audioElement = document.getElementById(sound) as HTMLAudioElement
+    const audioElement = document.getElementById(sound) as HTMLAudioElement;
     if (allPlaying.value) {
-      audioElement.play()
+      audioElement.play();
     } else {
-      audioElement.pause()
+      audioElement.pause();
     }
   }
-}
+};
 </script>
 
 <style scoped></style>

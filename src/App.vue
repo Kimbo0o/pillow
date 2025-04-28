@@ -4,8 +4,8 @@
 </template>
 
 <script setup lang="ts">
-import SoundItem from '@/components/SoundItem.vue'
-import PlayPauseAll from '@/components/PlayPauseAll.vue'
+import SoundItem from '@/components/SoundItem.vue';
+import PlayPauseAll from '@/components/PlayPauseAll.vue';
 
 const sounds = [
   'birds',
@@ -22,5 +22,5 @@ const sounds = [
   'waves',
   'white-noise',
   'wind',
-]
+];
 </script>
