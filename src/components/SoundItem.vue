@@ -1,12 +1,11 @@
 <template>
-  <div>
-    <div @click="toggleActive">
-      <div>{{ fileSrc }}</div>
-      <audio ref="audioElement" controls :id="props.fileId" loop>
-        <source :src="fileSrc" type="audio/ogg" />
-      </audio>
-      <input type="range" min="0" max="1" step="0.01" v-model="volume" />
-    </div>
+  <div @click="toggleActive" class="cursor-pointer" :class="{ 'bg-violet-400': isActive }">
+    <div>{{ fileSrc }}: {{ isActive }}</div>
+    <img :src="iconSrc" :alt="props.fileId" />
+    <audio ref="audioElement" controls :id="props.fileId" loop>
+      <source :src="fileSrc" type="audio/ogg" />
+    </audio>
+    <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.prevent />
   </div>
 </template>
 
@@ -26,6 +25,10 @@ const activeSounds = useStorage<string[]>('active-sounds', [], localStorage);
 
 const fileSrc = computed(() => {
   return '/sounds/' + props.fileId + '.ogg';
+});
+
+const iconSrc = computed(() => {
+  return '/icons/emblems/' + props.fileId + '.svg';
 });
 
 watch(volume, (newVolume) => {
