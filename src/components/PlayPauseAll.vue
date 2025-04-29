@@ -1,26 +1,16 @@
 <template>
-  <button @click="toggleAllPlaying">{{ allPlaying ? 'Pause all' : 'Play all' }}</button>
+  <button @click="toggleAllPlaying">
+    {{ soundsStore.playingActiveSounds ? 'Pause' : 'Play' }}
+  </button>
 </template>
 
 <script setup lang="ts">
-import { ref, defineProps } from 'vue';
+import { useSoundsStore } from '@/stores/sounds.ts';
 
-const props = defineProps<{
-  sounds: string[];
-}>();
-
-const allPlaying = ref(false);
+const soundsStore = useSoundsStore();
 
 const toggleAllPlaying = () => {
-  allPlaying.value = !allPlaying.value;
-  for (const sound of props.sounds) {
-    const audioElement = document.getElementById(sound) as HTMLAudioElement;
-    if (allPlaying.value) {
-      audioElement.play();
-    } else {
-      audioElement.pause();
-    }
-  }
+  soundsStore.togglePlayingActiveSounds();
 };
 </script>
 

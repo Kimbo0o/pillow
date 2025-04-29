@@ -1,17 +1,20 @@
 <template>
-  <div @click="toggleActive" class="cursor-pointer" :class="{ 'bg-violet-400': isActive }">
-    <div>{{ fileSrc }}: {{ isActive }}</div>
+  <div
+    @click="toggleActive"
+    class="cursor-pointer hover:bg-gray-100"
+    :class="{ 'bg-violet-400': isActive }"
+  >
     <img :src="iconSrc" :alt="props.fileId" />
-    <audio ref="audioElement" controls :id="props.fileId" loop>
+    <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.stop />
+    <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
       <source :src="fileSrc" type="audio/ogg" />
     </audio>
-    <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.prevent />
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref, watch, defineProps } from 'vue';
-import { useStorage } from '@vueuse/core';
+import { useSoundsStore } from '@/stores/sounds.ts';
 
 const props = defineProps<{
   fileId: string;
@@ -21,7 +24,7 @@ const volume = ref(50);
 
 const audioElement = ref<HTMLAudioElement | null>(null);
 
-const activeSounds = useStorage<string[]>('active-sounds', [], localStorage);
+const soundsStore = useSoundsStore();
 
 const fileSrc = computed(() => {
   return '/sounds/' + props.fileId + '.ogg';
@@ -37,14 +40,23 @@ watch(volume, (newVolume) => {
   }
 });
 
-const isActive = ref(activeSounds.value.includes(props.fileId));
-
 const toggleActive = () => {
-  isActive.value = !isActive.value;
-  if (isActive.value) {
-    activeSounds.value.push(props.fileId);
-  } else {
-    activeSounds.value = activeSounds.value.filter((sound) => sound !== props.fileId);
-  }
+  soundsStore.toggleSoundActive(props.fileId);
 };
+
+const isActive = computed(() => {
+  return soundsStore.activeSounds.includes(props.fileId);
+});
+
+const shouldBePlaying = computed(() => {
+  return isActive.value && soundsStore.playingActiveSounds;
+});
+
+watch(shouldBePlaying, (newShouldBePlaying) => {
+  if (newShouldBePlaying) {
+    audioElement.value?.play();
+  } else {
+    audioElement.value?.pause();
+  }
+});
 </script>

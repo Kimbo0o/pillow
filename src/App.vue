@@ -1,26 +1,16 @@
 <template>
-  <SoundItem v-for="sound of sounds" :key="sound" :file-id="sound" />
-  <PlayPauseAll :sounds="sounds" />
+  <div class="flex justify-center">
+    <div class="flex flex-wrap max-w-300">
+      <SoundItem v-for="sound of soundsStore.availableSounds" :key="sound" :file-id="sound" />
+    </div>
+  </div>
+  <PlayPauseAll />
 </template>
 
 <script setup lang="ts">
 import SoundItem from '@/components/SoundItem.vue';
 import PlayPauseAll from '@/components/PlayPauseAll.vue';
+import { useSoundsStore } from '@/stores/sounds.ts';
 
-const sounds = [
-  'birds',
-  'boat',
-  'city',
-  'coffee-shop',
-  'fireplace',
-  'pink-noise',
-  'rain',
-  'storm',
-  'stream',
-  'summer-night',
-  'train',
-  'waves',
-  'white-noise',
-  'wind',
-];
+const soundsStore = useSoundsStore();
 </script>
