@@ -1,10 +1,10 @@
 <template>
-  <div
-    @click="toggleActive"
-    class="cursor-pointer hover:bg-gray-100"
-    :class="{ 'bg-violet-400': isActive }"
-  >
-    <img :src="iconSrc" :alt="props.fileId" />
+  <div @click="toggleActive" class="cursor-pointer hover:bg-gray-100">
+    <div class="flex justify-center">
+      <div class="rounded-full p-4" :class="{ 'bg-violet-300': isActive }">
+        <SoundIcon :file-id="props.fileId" :active="isActive" />
+      </div>
+    </div>
     <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.stop />
     <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
       <source :src="fileSrc" type="audio/ogg" />
@@ -15,6 +15,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, defineProps } from 'vue';
 import { useSoundsStore } from '@/stores/sounds.ts';
+import SoundIcon from '@/components/SoundIcon.vue';
 
 const props = defineProps<{
   fileId: string;
