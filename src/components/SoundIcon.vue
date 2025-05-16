@@ -68,7 +68,7 @@ const IconComponent = computed(() => {
 
 <style scoped lang="scss">
 .icon-active :deep(path) {
-  fill: oklch(55.8% 0.288 302.321) !important;
+  fill: oklch(39.8% 0.195 277.366) !important;
 }
 
 .icon-inactive :deep(path) {

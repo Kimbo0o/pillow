@@ -1,7 +1,7 @@
 <template>
-  <div @click="toggleActive" class="cursor-pointer hover:bg-gray-100">
+  <div @click="toggleActive" class="p-4 rounded-xl cursor-pointer hover:bg-gray-100">
     <div class="flex justify-center">
-      <div class="rounded-full p-4" :class="{ 'bg-violet-300': isActive }">
+      <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
         <SoundIcon :file-id="props.fileId" :active="isActive" />
       </div>
     </div>

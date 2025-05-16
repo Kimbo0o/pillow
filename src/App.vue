@@ -1,16 +1,11 @@
 <template>
-  <div class="flex justify-center">
-    <div class="flex flex-wrap max-w-300">
-      <SoundItem v-for="sound of soundsStore.availableSounds" :key="sound" :file-id="sound" />
-    </div>
+  <div class="h-screen grid grid-cols-1 grid-rows-[1fr_auto]">
+    <TheSoundItems />
+    <TheMenuBar />
   </div>
-  <PlayPauseAll />
 </template>
 
 <script setup lang="ts">
-import SoundItem from '@/components/SoundItem.vue';
-import PlayPauseAll from '@/components/PlayPauseAll.vue';
-import { useSoundsStore } from '@/stores/sounds.ts';
-
-const soundsStore = useSoundsStore();
+import TheSoundItems from '@/components/TheSoundItems.vue';
+import TheMenuBar from '@/components/TheMenuBar.vue';
 </script>
