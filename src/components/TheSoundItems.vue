@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-start p-4 overflow-y-auto">
+  <div class="flex justify-center items-start p-8 overflow-y-auto">
     <div class="flex flex-wrap gap-4 max-w-300 items-start">
       <SoundItem
         v-for="sound of soundsStore.availableSounds"
