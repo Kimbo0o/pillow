@@ -4,7 +4,7 @@
     class="cursor-pointer"
     :title="soundsStore.playingActiveSounds ? 'Pause' : 'Play'"
   >
-    <div class="flex rounded-full bg-indigo-400 p-3">
+    <div class="flex rounded-full p-3 bg-indigo-400 hover:bg-indigo-500">
       <component
         :is="soundsStore.playingActiveSounds ? PauseIcon : PlayIcon"
         class="w-[24px] h-[24px] fill-white"
