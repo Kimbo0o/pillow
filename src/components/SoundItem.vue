@@ -1,5 +1,8 @@
 <template>
-  <div @click="toggleActive" class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 test">
+  <div
+    @click="toggleActive"
+    class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 select-none"
+  >
     <div class="flex flex-col items-center gap-4">
       <div class="flex">
         <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
@@ -13,6 +16,7 @@
         max="1"
         step="0.01"
         v-model="soundVolume"
+        @change="onSoundVolumeChange"
         @click.stop
         class="w-full h-2 rounded-lg appearance-none cursor-pointer slider"
         :class="{ active: isActive }"
@@ -38,13 +42,29 @@ const props = defineProps<{
 const soundsStore = useSoundsStore();
 const volumeStore = useVolumeStore();
 
-const soundVolume = ref(1);
-
 const audioElement = ref<HTMLAudioElement | null>(null);
 
 const fileSrc = computed(() => {
   return '/sounds/' + props.fileId + '.ogg';
 });
+
+// #region volume
+const soundVolume = ref(1);
+
+watch(
+  volumeStore.soundVolumes,
+  (newSoundVolumes) => {
+    if (newSoundVolumes.has(props.fileId)) {
+      const newSoundVolume = newSoundVolumes.get(props.fileId) as number;
+      soundVolume.value = newSoundVolume;
+    }
+  },
+  { immediate: true },
+);
+
+const onSoundVolumeChange = () => {
+  volumeStore.soundVolumes.set(props.fileId, soundVolume.value);
+};
 
 const computedVolume = computed(() => {
   return soundVolume.value * volumeStore.volumeMultiplicator;
@@ -55,7 +75,9 @@ watch(computedVolume, (newVolume) => {
     audioElement.value.volume = newVolume;
   }
 });
+// #endregion
 
+// #region active
 const toggleActive = () => {
   soundsStore.toggleSoundActive(props.fileId);
 };
@@ -75,6 +97,7 @@ watch(shouldBePlaying, (newShouldBePlaying) => {
     audioElement.value?.pause();
   }
 });
+// #endregion
 </script>
 
 <style scoped lang="scss"></style>

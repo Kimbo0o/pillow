@@ -21,7 +21,7 @@ export const useSoundsStore = defineStore('sounds', () => {
     { id: 'white-noise', name: 'White Noise' },
   ];
 
-  const activeSounds = useStorage<string[]>('sounds', [], localStorage);
+  const activeSounds = useStorage<string[]>('active-sounds', [], localStorage);
 
   const toggleSoundActive = (id: string) => {
     if (activeSounds.value.includes(id)) {
