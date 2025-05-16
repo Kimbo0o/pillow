@@ -1,11 +1,14 @@
 <template>
   <div @click="toggleActive" class="p-4 rounded-xl cursor-pointer hover:bg-gray-100">
-    <div class="flex justify-center">
-      <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
-        <SoundIcon :file-id="props.fileId" :active="isActive" />
+    <div class="flex flex-col items-center gap-4">
+      <div class="flex">
+        <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
+          <SoundIcon :file-id="props.fileId" :active="isActive" />
+        </div>
       </div>
+      <div>{{ props.name }}</div>
+      <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.stop />
     </div>
-    <input type="range" min="0" max="1" step="0.01" v-model="volume" @click.stop />
     <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
       <source :src="fileSrc" type="audio/ogg" />
     </audio>
@@ -19,6 +22,7 @@ import SoundIcon from '@/components/SoundIcon.vue';
 
 const props = defineProps<{
   fileId: string;
+  name: string;
 }>();
 
 const volume = ref(50);

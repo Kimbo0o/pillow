@@ -5,20 +5,20 @@ import { ref } from 'vue';
 
 export const useSoundsStore = defineStore('sounds', () => {
   const availableSounds = [
-    'birds',
-    'boat',
-    'city',
-    'coffee-shop',
-    'fireplace',
-    'pink-noise',
-    'rain',
-    'storm',
-    'stream',
-    'summer-night',
-    'train',
-    'waves',
-    'white-noise',
-    'wind',
+    { id: 'rain', name: 'Rain' },
+    { id: 'storm', name: 'Storm' },
+    { id: 'wind', name: 'Wind' },
+    { id: 'waves', name: 'Waves' },
+    { id: 'stream', name: 'Stream' },
+    { id: 'birds', name: 'Birds' },
+    { id: 'summer-night', name: 'Summer Night' },
+    { id: 'train', name: 'Train' },
+    { id: 'boat', name: 'Boat' },
+    { id: 'city', name: 'City' },
+    { id: 'coffee-shop', name: 'Coffe Shop' },
+    { id: 'fireplace', name: 'Fireplace' },
+    { id: 'pink-noise', name: 'Pink Noise' },
+    { id: 'white-noise', name: 'White Noise' },
   ];
 
   const activeSounds = useStorage<string[]>('sounds', [], localStorage);
