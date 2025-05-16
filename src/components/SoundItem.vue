@@ -1,5 +1,5 @@
 <template>
-  <div @click="toggleActive" class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100">
+  <div @click="toggleActive" class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 test">
     <div class="flex flex-col items-center gap-4">
       <div class="flex">
         <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
@@ -82,7 +82,7 @@ watch(shouldBePlaying, (newShouldBePlaying) => {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: oklch(87.2% 0.01 258.338);
+  background-color: var(--color-gray-200);
 }
 
 /* Firefox */
@@ -92,11 +92,11 @@ watch(shouldBePlaying, (newShouldBePlaying) => {
   height: 15px;
   border: none;
   border-radius: 50%;
-  background-color: oklch(87.2% 0.01 258.338);
+  background-color: var(--color-gray-200);
 }
 
 .slider.active::-webkit-slider-thumb,
 .slider.active::-moz-range-thumb {
-  background-color: oklch(39.8% 0.195 277.366);
+  background-color: var(--color-indigo-600);
 }
 </style>
