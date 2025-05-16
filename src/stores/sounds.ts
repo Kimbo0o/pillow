@@ -35,7 +35,6 @@ export const useSoundsStore = defineStore('sounds', () => {
 
   const togglePlayingActiveSounds = () => {
     playingActiveSounds.value = !playingActiveSounds.value;
-    console.log(playingActiveSounds.value);
   };
 
   return {

@@ -12,10 +12,10 @@
         min="0"
         max="1"
         step="0.01"
-        v-model="volume"
+        v-model="soundVolume"
         @click.stop
         class="w-full h-2 rounded-lg appearance-none cursor-pointer slider"
-        :class="{ 'bg-indigo-400': isActive, 'bg-gray-200': !isActive, active: isActive }"
+        :class="{ active: isActive }"
       />
     </div>
     <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
@@ -27,6 +27,7 @@
 <script setup lang="ts">
 import { computed, ref, watch, defineProps } from 'vue';
 import { useSoundsStore } from '@/stores/sounds.ts';
+import { useVolumeStore } from '@/stores/volume.ts';
 import SoundIcon from '@/components/SoundIcon.vue';
 
 const props = defineProps<{
@@ -34,21 +35,22 @@ const props = defineProps<{
   name: string;
 }>();
 
-const volume = ref(50);
+const soundsStore = useSoundsStore();
+const volumeStore = useVolumeStore();
+
+const soundVolume = ref(1);
 
 const audioElement = ref<HTMLAudioElement | null>(null);
-
-const soundsStore = useSoundsStore();
 
 const fileSrc = computed(() => {
   return '/sounds/' + props.fileId + '.ogg';
 });
 
-const iconSrc = computed(() => {
-  return '/icons/emblems/' + props.fileId + '.svg';
+const computedVolume = computed(() => {
+  return soundVolume.value * volumeStore.volumeMultiplicator;
 });
 
-watch(volume, (newVolume) => {
+watch(computedVolume, (newVolume) => {
   if (audioElement.value) {
     audioElement.value.volume = newVolume;
   }
@@ -75,28 +77,4 @@ watch(shouldBePlaying, (newShouldBePlaying) => {
 });
 </script>
 
-<style scoped lang="scss">
-/* Chrome, Safari, Edge */
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none; /* clear browser thumb */
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  background-color: var(--color-gray-200);
-}
-
-/* Firefox */
-.slider::-moz-range-thumb {
-  -webkit-appearance: none; /* clear browser thumb */
-  width: 15px;
-  height: 15px;
-  border: none;
-  border-radius: 50%;
-  background-color: var(--color-gray-200);
-}
-
-.slider.active::-webkit-slider-thumb,
-.slider.active::-moz-range-thumb {
-  background-color: var(--color-indigo-600);
-}
-</style>
+<style scoped lang="scss"></style>

@@ -1,1 +1,34 @@
 @import 'tailwindcss';
+
+
+.slider {
+  background-color: var(--color-gray-200);
+}
+
+.slider.active {
+  background-color: var(--color-indigo-400);
+}
+
+/* Chrome, Safari, Edge */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* clear browser thumb */
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: var(--color-gray-200);
+}
+
+/* Firefox */
+.slider::-moz-range-thumb {
+  -webkit-appearance: none; /* clear browser thumb */
+  width: 15px;
+  height: 15px;
+  border: none;
+  border-radius: 50%;
+  background-color: var(--color-gray-200);
+}
+
+.slider.active::-webkit-slider-thumb,
+.slider.active::-moz-range-thumb {
+  background-color: var(--color-indigo-600);
+}
