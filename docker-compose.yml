@@ -2,5 +2,5 @@ services:
   pillow:
     image: kimbo0o/pillow
     ports:
-      - 8089:80
+      - 8061:80
     restart: 'unless-stopped'
