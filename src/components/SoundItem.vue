@@ -29,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref, watch, defineProps } from 'vue';
+import { computed, defineProps, ref, watch } from 'vue';
 import { useSoundsStore } from '@/stores/sounds.ts';
 import { useVolumeStore } from '@/stores/volume.ts';
 import SoundIcon from '@/components/SoundIcon.vue';
@@ -55,8 +55,7 @@ watch(
   volumeStore.soundVolumes,
   (newSoundVolumes) => {
     if (newSoundVolumes.has(props.fileId)) {
-      const newSoundVolume = newSoundVolumes.get(props.fileId) as number;
-      soundVolume.value = newSoundVolume;
+      soundVolume.value = newSoundVolumes.get(props.fileId) as number;
     }
   },
   { immediate: true },
