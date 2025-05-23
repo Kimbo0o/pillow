@@ -4,7 +4,8 @@
 - [X] Global volume slider
 - [X] Store individual volumes
 - [X] PWA Setup
-- [ ] Container Release
-- [ ] Readme
+- [X] Container Release
+- [X] Readme
+- [ ] Profiles
 - [ ] Unit Tests
 - [ ] Keyboard Navigation
