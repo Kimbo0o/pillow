@@ -3,7 +3,7 @@
 This is a web app heavily inspired by [Blanket](https://github.com/rafaelmardojai/blanket).
 It helps to improve focus and increase productivity by listening to different sounds.
 
-[Demo](pillow.kimdanielkoch.de)
+[Demo](https://pillow.kimdanielkoch.de)
 
 ## Tech Stack
 
