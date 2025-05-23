@@ -1,7 +1,7 @@
 # Pillow
 
 This is a web app heavily inspired by [Blanket](https://github.com/rafaelmardojai/blanket).
-It helps to improve focus and increase productivity by listening to different sounds.
+It helps to improve focus and increase productivity by playing different sounds.
 
 [Demo](https://pillow.kimdanielkoch.de)
 
