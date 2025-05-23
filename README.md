@@ -1,18 +1,29 @@
-# pillow
+# Pillow
 
-This template should help get you started developing with Vue 3 in Vite.
+This is a web app heavily inspired by [Blanket](https://github.com/rafaelmardojai/blanket).
+It helps to improve focus and increase productivity by listening to different sounds.
 
-## Recommended IDE Setup
+[Demo](pillow.kimdanielkoch.de)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Tech Stack
 
-## Type Support for `.vue` Imports in TS
+- [Vue.js](https://vuejs.org/)
+- [Vite](https://vite.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Deployment
 
-## Customize configuration
+This App is published as OCI image to [docker hub](https://hub.docker.com/r/kimbo0o/pillow) and can be deployed using
+docker-compose:
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+```yml
+services:
+  pillow:
+    image: kimbo0o/pillow
+    ports:
+      - 8089:80
+    restart: 'unless-stopped'
+```
 
 ## Project Setup
 
