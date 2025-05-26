@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
     @click="toggleActive"
     class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 select-none"
   >
@@ -25,7 +25,7 @@
     <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
       <source :src="fileSrc" type="audio/ogg" />
     </audio>
-  </div>
+  </button>
 </template>
 
 <script setup lang="ts">
