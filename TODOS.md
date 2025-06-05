@@ -9,4 +9,4 @@
 - [X] Profiles
 - [ ] Unit Tests
 - [X] Dark Mode
-- [ ] Keyboard Navigation
+- [X] Keyboard Navigation
