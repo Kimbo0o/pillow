@@ -9,7 +9,7 @@
           <SoundIcon :file-id="props.fileId" :active="isActive" />
         </div>
       </div>
-      <div>{{ props.name }}</div>
+      <div class="text-gray-800">{{ props.name }}</div>
       <input
         type="range"
         min="0"

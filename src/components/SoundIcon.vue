@@ -72,6 +72,6 @@ const IconComponent = computed(() => {
 }
 
 .icon-inactive :deep(path) {
-  fill: var(--color-zinc-600) !important;
+  fill: var(--color-gray-600) !important;
 }
 </style>

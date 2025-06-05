@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-between items-center gap-4 border-t-zinc-200 border-t-2 p-4">
+  <div class="flex justify-between items-center gap-4 border-t-gray-200 border-t-2 p-4">
     <ThePresetSelection />
     <div class="flex items-center gap-4">
       <ThePlayPauseAllBtn />
