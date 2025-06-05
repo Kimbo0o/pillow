@@ -1,7 +1,7 @@
 <template>
   <component
     :is="IconComponent"
-    :class="{ 'icon-active': props.active, 'icon-inactive': !props.active }"
+    :class="{ active: props.active, inactive: !props.active, dark: isDark }"
   />
 </template>
 
@@ -23,11 +23,14 @@ import WhiteNoise from '@/assets/icons/white-noise.svg';
 import Wind from '@/assets/icons/wind.svg';
 
 import { computed } from 'vue';
+import { usePreferredDark } from '@vueuse/core';
 
 const props = defineProps<{
   fileId: string;
   active: boolean;
 }>();
+
+const isDark = usePreferredDark();
 
 const IconComponent = computed(() => {
   switch (props.fileId) {
@@ -67,11 +70,15 @@ const IconComponent = computed(() => {
 </script>
 
 <style scoped lang="scss">
-.icon-active :deep(path) {
+.active :deep(path) {
   fill: var(--color-indigo-700) !important;
 }
 
-.icon-inactive :deep(path) {
+.inactive :deep(path) {
   fill: var(--color-gray-600) !important;
+}
+
+.inactive.dark :deep(path) {
+  fill: var(--color-gray-200) !important;
 }
 </style>

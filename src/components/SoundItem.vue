@@ -1,7 +1,7 @@
 <template>
   <button
     @click="toggleActive"
-    class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 select-none"
+    class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-700 select-none"
   >
     <div class="flex flex-col items-center gap-4">
       <div class="flex">
@@ -9,7 +9,7 @@
           <SoundIcon :file-id="props.fileId" :active="isActive" />
         </div>
       </div>
-      <div class="text-gray-800">{{ props.name }}</div>
+      <div class="text-gray-800 dark:text-gray-200">{{ props.name }}</div>
       <input
         type="range"
         min="0"

@@ -8,7 +8,7 @@
             type="text"
             placeholder="New preset name ..."
             v-model="newPresetName"
-            class="p-1 p-2 rounded-md border-1 border-zinc-400"
+            class="p-2 rounded-md border-1 border-zinc-400 dark:text-gray-200"
             :class="{ 'border-red-500 ': nameValidationError }"
             @keydown.enter="saveNewPreset"
           />
@@ -22,7 +22,7 @@
         </button>
         <button
           @click="onCancelCreatingPresetClick"
-          class="px-4 py-2 rounded-md cursor-pointer border-1 border-b-indigo-500 text-indigo-500 hover:bg-indigo-50"
+          class="px-4 py-2 rounded-md cursor-pointer border-1 border-b-indigo-500 text-indigo-500 hover:bg-indigo-50 dark:hover:bg-zinc-800"
         >
           Cancel
         </button>

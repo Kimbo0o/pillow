@@ -8,5 +8,5 @@
 - [X] Readme
 - [X] Profiles
 - [ ] Unit Tests
-- [ ] Dark Mode
+- [X] Dark Mode
 - [ ] Keyboard Navigation
