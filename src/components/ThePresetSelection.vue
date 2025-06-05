@@ -31,7 +31,11 @@
     <template v-else>
       <div class="flex items-center gap-2">
         <template v-if="presetsStore.existingPresetNames.length > 1">
-          <select @change="onPresetChange" :value="presetsStore.currentPresetName">
+          <select
+            @change="onPresetChange"
+            :value="presetsStore.currentPresetName"
+            class="dark:text-gray-200"
+          >
             <option
               v-for="presetName of presetsStore.existingPresetNames"
               :key="presetName"
