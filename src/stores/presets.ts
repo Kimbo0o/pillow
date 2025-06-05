@@ -32,6 +32,7 @@ export const usePresetsStore = defineStore('presets', () => {
     const targetPreset = storedPresets.value[targetIndex];
     soundsStore.activeSounds = targetPreset.activeSounds;
     volumeStore.soundVolumes = targetPreset.soundVolumes;
+    currentPresetName.value = presetName;
     // delete preset
     storedPresets.value.splice(targetIndex, 1);
     // push memorized preset
@@ -45,20 +46,34 @@ export const usePresetsStore = defineStore('presets', () => {
     }
     const newPreset: Preset = {
       name: presetName,
-      activeSounds: [],
-      soundVolumes: new Map(),
+      activeSounds: soundsStore.activeSounds,
+      soundVolumes: volumeStore.soundVolumes,
     };
-    storedPresets.value.push(newPreset);
+    // create deep copy to prevent unwanted change of stored preset later
+    const newPresetCopy = JSON.parse(JSON.stringify(newPreset));
+    storedPresets.value.push(newPresetCopy);
     switchPreset(presetName);
   };
 
   const existingPresetNames = computed(() => {
-    return [currentPresetName.value, ...storedPresets.value.map((preset) => preset.name)];
+    const names = [currentPresetName.value, ...storedPresets.value.map((preset) => preset.name)];
+    return names.sort((a, b) => {
+      if (a === 'default') return -1;
+      if (b === 'default') return 1;
+      return a.localeCompare(b);
+    });
   });
 
   const numberOfExistingPresets = computed(() => {
     return storedPresets.value.length + 1;
   });
+
+  const deleteCurrentPreset = () => {
+    const memorizedPresetName = currentPresetName.value;
+    switchPreset('default');
+    const index = storedPresets.value.findIndex((preset) => preset.name === memorizedPresetName);
+    storedPresets.value.splice(index, 1);
+  };
 
   return {
     currentPresetName,
@@ -66,5 +81,6 @@ export const usePresetsStore = defineStore('presets', () => {
     numberOfExistingPresets,
     switchPreset,
     createNewPreset,
+    deleteCurrentPreset,
   };
 });

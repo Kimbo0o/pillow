@@ -10,11 +10,12 @@
             v-model="newPresetName"
             class="p-1 p-2 rounded-md border-1 border-zinc-400"
             :class="{ 'border-red-500 ': nameValidationError }"
+            @keydown.enter="saveNewPreset"
           />
           <div v-if="nameValidationError" class="text-red-500">{{ nameValidationError }}</div>
         </div>
         <button
-          @click="onSavePresetClick"
+          @click="saveNewPreset"
           class="px-4 py-2 rounded-md cursor-pointer bg-indigo-500 text-white hover:bg-indigo-400"
         >
           Save
@@ -28,17 +29,43 @@
       </div>
     </template>
     <template v-else>
-      <button title="Save as new preset" class="cursor-pointer" @click="onSaveNewPresetClick">
-        <BookmarkIcon class="w-[24px] h-[24px] fill-indigo-500" />
-      </button>
+      <div class="flex items-center gap-2">
+        <template v-if="presetsStore.existingPresetNames.length > 1">
+          <select @change="onPresetChange" :value="presetsStore.currentPresetName">
+            <option
+              v-for="presetName of presetsStore.existingPresetNames"
+              :key="presetName"
+              :value="presetName"
+            >
+              {{ presetName }}
+            </option>
+          </select>
+          <button
+            v-if="presetsStore.currentPresetName !== 'default'"
+            title="Delete selected preset and switch to default"
+            class="mr-4 cursor-pointer"
+            @click="onDeleteCurrentPresetClick"
+          >
+            <TrashIcon class="w-[24px] h-[24px] fill-indigo-500"></TrashIcon>
+          </button>
+        </template>
+        <button
+          title="Save current settings as new preset"
+          class="cursor-pointer"
+          @click="onSaveNewPresetClick"
+        >
+          <BookmarkIcon class="w-[24px] h-[24px] fill-indigo-500" />
+        </button>
+      </div>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, type Ref, ref } from 'vue';
+import { type Ref, ref } from 'vue';
 import { usePresetsStore } from '@/stores/presets.ts';
 import { BookmarkIcon } from '@heroicons/vue/24/solid';
+import { TrashIcon } from '@heroicons/vue/24/solid';
 
 const nameInput: Ref<HTMLInputElement | null> = ref(null);
 
@@ -57,7 +84,7 @@ const onCancelCreatingPresetClick = () => {
   isCreatingPreset.value = false;
 };
 
-const onSavePresetClick = () => {
+const saveNewPreset = () => {
   const error = validateNewName();
   if (error) {
     nameValidationError.value = error;
@@ -80,6 +107,15 @@ const validateNewName = () => {
     return 'Name must be unique';
   }
   return null;
+};
+
+const onPresetChange = (event: Event) => {
+  const target = event.target as HTMLInputElement;
+  presetsStore.switchPreset(target.value);
+};
+
+const onDeleteCurrentPresetClick = () => {
+  presetsStore.deleteCurrentPreset();
 };
 </script>
 

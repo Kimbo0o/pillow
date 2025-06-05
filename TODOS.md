@@ -6,7 +6,7 @@
 - [X] PWA Setup
 - [X] Container Release
 - [X] Readme
-- [ ] Profiles
+- [X] Profiles
 - [ ] Unit Tests
 - [ ] Dark Mode
 - [ ] Keyboard Navigation
