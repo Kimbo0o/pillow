@@ -34,7 +34,7 @@
           <select
             @change="onPresetChange"
             :value="presetsStore.currentPresetName"
-            class="dark:text-gray-200"
+            class="cursor-pointer dark:text-gray-200 dark:bg-zinc-700"
           >
             <option
               v-for="presetName of presetsStore.existingPresetNames"
