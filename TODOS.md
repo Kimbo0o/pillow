@@ -7,6 +7,7 @@
 - [X] Container Release
 - [X] Readme
 - [X] Profiles
-- [ ] Unit Tests
 - [X] Dark Mode
 - [X] Keyboard Navigation
+- [ ] Unit Tests
+- [ ] Update icon
