@@ -2,7 +2,7 @@ import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { useSoundsStore } from '@/stores/sounds.ts';
 import { useVolumeStore } from '@/stores/volume.ts';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 interface Preset {
   name: string;
@@ -46,13 +46,13 @@ export const usePresetsStore = defineStore('presets', () => {
     }
     const newPreset: Preset = {
       name: presetName,
-      activeSounds: soundsStore.activeSounds,
+      activeSounds: JSON.parse(JSON.stringify(soundsStore.activeSounds)),
       soundVolumes: volumeStore.soundVolumes,
     };
     // create deep copy to prevent unwanted change of stored preset later
-    const newPresetCopy = JSON.parse(JSON.stringify(newPreset));
-    storedPresets.value.push(newPresetCopy);
-    switchPreset(presetName);
+    // const newPresetCopy = JSON.parse(JSON.stringify(newPreset));
+    storedPresets.value.push(newPreset);
+    //TODO: Check, why soundVolumes within Preset is not stored in localstorage
   };
 
   const existingPresetNames = computed(() => {
@@ -75,6 +75,8 @@ export const usePresetsStore = defineStore('presets', () => {
     storedPresets.value.splice(index, 1);
   };
 
+  const test1 = ref<string | null>(null);
+
   return {
     currentPresetName,
     existingPresetNames,
@@ -82,5 +84,6 @@ export const usePresetsStore = defineStore('presets', () => {
     switchPreset,
     createNewPreset,
     deleteCurrentPreset,
+    test1,
   };
 });

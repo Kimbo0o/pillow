@@ -5,6 +5,7 @@ import { useVolumeStore } from '@/stores/volume.ts';
 describe('Volume store', () => {
   beforeEach(() => {
     setActivePinia(createPinia());
+    localStorage.clear();
   });
 
   it('initializes volume multiplicator default value', () => {
@@ -30,16 +31,21 @@ describe('Volume store', () => {
     expect(store.soundVolumes).toHaveLength(1);
   });
 
-  it('stores another sound volume', () => {
+  it('stores multiple sound volumes', () => {
     const store = useVolumeStore();
-    store.soundVolumes.set('test2', 0.54);
+    store.soundVolumes.set('test1', 0.54);
+    store.soundVolumes.set('test2', 0.63);
     expect(store.soundVolumes).toHaveLength(2);
     expect(store.soundVolumes.has('test1')).toBeTruthy();
     expect(store.soundVolumes.has('test2')).toBeTruthy();
+    expect(store.soundVolumes.get('test1')).toBe(0.54);
+    expect(store.soundVolumes.get('test2')).toBe(0.63);
   });
 
   it('allows deletion of sound volume', () => {
     const store = useVolumeStore();
+    store.soundVolumes.set('test1', 0.54);
+    store.soundVolumes.set('test2', 0.63);
     store.soundVolumes.delete('test2');
     expect(store.soundVolumes).toHaveLength(1);
     expect(store.soundVolumes.has('test1')).toBeTruthy();
