@@ -15,7 +15,7 @@
         min="0"
         max="1"
         step="0.01"
-        v-model="soundVolume"
+        :value="soundVolume"
         @change="onSoundVolumeChange"
         @click.stop
         class="w-full h-2 rounded-lg appearance-none cursor-pointer slider"
@@ -49,21 +49,16 @@ const fileSrc = computed(() => {
 });
 
 // #region volume
-const soundVolume = ref(1);
-
-watch(
-  volumeStore.soundVolumes,
-  (newSoundVolumes) => {
-    if (newSoundVolumes.has(props.fileId)) {
-      soundVolume.value = newSoundVolumes.get(props.fileId) as number;
-    }
-  },
-  { immediate: true },
-);
-
-const onSoundVolumeChange = () => {
-  volumeStore.soundVolumes.set(props.fileId, soundVolume.value);
+const onSoundVolumeChange = (event: Event) => {
+  const target = event?.target as HTMLInputElement;
+  volumeStore.soundVolumes.set(props.fileId, parseFloat(target.value));
 };
+
+const soundVolume = computed<number>(() => {
+  return volumeStore.soundVolumes.has(props.fileId)
+    ? (volumeStore.soundVolumes.get(props.fileId) as number)
+    : 1;
+});
 
 const computedVolume = computed(() => {
   return soundVolume.value * volumeStore.volumeMultiplicator;
