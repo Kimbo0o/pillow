@@ -3,13 +3,13 @@
     @click="toggleActive"
     class="block p-4 rounded-xl cursor-pointer hover:bg-gray-100 dark:hover:bg-zinc-700 select-none"
   >
-    <div class="flex flex-col items-center gap-4">
-      <div class="flex">
-        <div class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
+    <span class="flex flex-col items-center gap-4">
+      <span class="flex">
+        <span class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
           <SoundIcon :file-id="props.fileId" :active="isActive" />
-        </div>
-      </div>
-      <div class="text-gray-800 dark:text-gray-200">{{ props.name }}</div>
+        </span>
+      </span>
+      <span class="text-gray-800 dark:text-gray-200">{{ props.name }}</span>
       <input
         type="range"
         min="0"
@@ -21,7 +21,7 @@
         class="w-full h-2 rounded-lg appearance-none cursor-pointer slider"
         :class="{ active: isActive }"
       />
-    </div>
+    </span>
     <audio ref="audioElement" controls :id="props.fileId" loop class="hidden">
       <source :src="fileSrc" type="audio/ogg" />
     </audio>
