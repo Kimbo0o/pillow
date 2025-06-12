@@ -7,7 +7,7 @@ import { computed, ref } from 'vue';
 interface Preset {
   name: string;
   activeSounds: string[];
-  soundVolumes: Map<string, number>;
+  soundVolumes: any;
 }
 
 export const usePresetsStore = defineStore('presets', () => {
@@ -25,13 +25,13 @@ export const usePresetsStore = defineStore('presets', () => {
     // memorize current preset
     const memorizedPreset: Preset = {
       name: currentPresetName.value,
-      activeSounds: soundsStore.activeSounds,
-      soundVolumes: volumeStore.soundVolumes,
+      activeSounds: JSON.parse(JSON.stringify(soundsStore.activeSounds)),
+      soundVolumes: Object.fromEntries(volumeStore.soundVolumes),
     };
     // update settings
     const targetPreset = storedPresets.value[targetIndex];
     soundsStore.activeSounds = targetPreset.activeSounds;
-    volumeStore.soundVolumes = targetPreset.soundVolumes;
+    volumeStore.soundVolumes = new Map(Object.entries(targetPreset.soundVolumes));
     currentPresetName.value = presetName;
     // delete preset
     storedPresets.value.splice(targetIndex, 1);
@@ -47,12 +47,10 @@ export const usePresetsStore = defineStore('presets', () => {
     const newPreset: Preset = {
       name: presetName,
       activeSounds: JSON.parse(JSON.stringify(soundsStore.activeSounds)),
-      soundVolumes: volumeStore.soundVolumes,
+      soundVolumes: Object.fromEntries(volumeStore.soundVolumes),
     };
-    // create deep copy to prevent unwanted change of stored preset later
-    // const newPresetCopy = JSON.parse(JSON.stringify(newPreset));
     storedPresets.value.push(newPreset);
-    //TODO: Check, why soundVolumes within Preset is not stored in localstorage
+    switchPreset(presetName);
   };
 
   const existingPresetNames = computed(() => {

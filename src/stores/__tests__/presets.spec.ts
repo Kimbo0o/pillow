@@ -29,6 +29,7 @@ describe('Presets store', () => {
     soundsStore.toggleSoundActive('storm');
     soundsStore.toggleSoundActive('wind');
     volumeStore.soundVolumes.set('rain', 0.5);
+
     presetsStore.createNewPreset('myPreset1');
 
     expect(presetsStore.existingPresetNames).toMatchObject(['default', 'myPreset1']);
@@ -47,17 +48,23 @@ describe('Presets store', () => {
     soundsStore.toggleSoundActive('storm');
     soundsStore.toggleSoundActive('wind');
     volumeStore.soundVolumes.set('rain', 0.5);
-    console.log(volumeStore.soundVolumes);
     presetsStore.createNewPreset('myPreset1');
     presetsStore.createNewPreset('myPreset2');
     soundsStore.toggleSoundActive('rain');
-    console.log(volumeStore.soundVolumes);
     volumeStore.soundVolumes.set('rain', 0.4);
     volumeStore.soundVolumes.set('storm', 0.3);
+
     presetsStore.switchPreset('myPreset1');
 
     expect(presetsStore.currentPresetName).toBe('myPreset1');
-    expect(soundsStore.activeSounds).toHaveLength(3);
+    expect(soundsStore.activeSounds).toMatchObject(['rain', 'storm', 'wind']);
     expect(volumeStore.soundVolumes.get('rain')).toBe(0.5);
+
+    presetsStore.switchPreset('myPreset2');
+
+    expect(presetsStore.currentPresetName).toBe('myPreset2');
+    expect(soundsStore.activeSounds).toMatchObject(['storm', 'wind']);
+    expect(volumeStore.soundVolumes.get('rain')).toBe(0.4);
+    expect(volumeStore.soundVolumes.get('storm')).toBe(0.3);
   });
 });
