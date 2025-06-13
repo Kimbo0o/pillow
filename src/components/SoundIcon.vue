@@ -7,11 +7,12 @@
 
 <script setup lang="ts">
 import { usePreferredDark } from '@vueuse/core';
+import { type Component } from 'vue';
 
 const props = defineProps<{
   fileId: string;
   active: boolean;
-  icon: string;
+  icon: Component;
 }>();
 
 const isDark = usePreferredDark();

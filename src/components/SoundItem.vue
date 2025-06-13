@@ -33,11 +33,12 @@ import { computed, defineProps, ref, watch } from 'vue';
 import { useSoundsStore } from '@/stores/sounds.ts';
 import { useVolumeStore } from '@/stores/volume.ts';
 import SoundIcon from '@/components/SoundIcon.vue';
+import type { Component } from 'vue';
 
 const props = defineProps<{
   fileId: string;
   name: string;
-  icon: string;
+  icon: Component;
 }>();
 
 const soundsStore = useSoundsStore();
