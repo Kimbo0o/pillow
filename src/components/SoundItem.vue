@@ -6,7 +6,7 @@
     <span class="flex flex-col items-center gap-4">
       <span class="flex">
         <span class="rounded-full p-4" :class="{ 'bg-indigo-200': isActive }">
-          <SoundIcon :file-id="props.fileId" :active="isActive" />
+          <SoundIcon :file-id="props.fileId" :active="isActive" :icon="props.icon" />
         </span>
       </span>
       <span class="text-gray-800 dark:text-gray-200">{{ props.name }}</span>
@@ -37,6 +37,7 @@ import SoundIcon from '@/components/SoundIcon.vue';
 const props = defineProps<{
   fileId: string;
   name: string;
+  icon: string;
 }>();
 
 const soundsStore = useSoundsStore();

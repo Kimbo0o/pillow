@@ -6,6 +6,7 @@
         :key="sound.id"
         :file-id="sound.id"
         :name="sound.name"
+        :icon="sound.icon"
       />
     </div>
   </div>

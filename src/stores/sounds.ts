@@ -1,24 +1,10 @@
 import { defineStore } from 'pinia';
 import { useStorage } from '@vueuse/core';
 import { ref } from 'vue';
+import { sounds } from '@/data/sounds.ts';
 
 export const useSoundsStore = defineStore('sounds', () => {
-  const availableSounds = [
-    { id: 'rain', name: 'Rain' },
-    { id: 'storm', name: 'Storm' },
-    { id: 'wind', name: 'Wind' },
-    { id: 'waves', name: 'Waves' },
-    { id: 'stream', name: 'Stream' },
-    { id: 'birds', name: 'Birds' },
-    { id: 'summer-night', name: 'Summer Night' },
-    { id: 'train', name: 'Train' },
-    { id: 'boat', name: 'Boat' },
-    { id: 'city', name: 'City' },
-    { id: 'coffee-shop', name: 'Coffe Shop' },
-    { id: 'fireplace', name: 'Fireplace' },
-    { id: 'pink-noise', name: 'Pink Noise' },
-    { id: 'white-noise', name: 'White Noise' },
-  ];
+  const availableSounds = sounds;
 
   const activeSounds = useStorage<string[]>('active-sounds', [], localStorage);
 
