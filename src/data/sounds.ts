@@ -12,20 +12,21 @@ import Train from '@/assets/icons/train.svg';
 import Waves from '@/assets/icons/waves.svg';
 import WhiteNoise from '@/assets/icons/white-noise.svg';
 import Wind from '@/assets/icons/wind.svg';
+import type { Component } from 'vue';
 
-export const sounds: { id: string; name: string; icon: string }[] = [
-  { id: 'rain', name: 'Rain', icon: Rain },
-  { id: 'storm', name: 'Storm', icon: Storm },
-  { id: 'wind', name: 'Wind', icon: Wind },
-  { id: 'waves', name: 'Waves', icon: Waves },
-  { id: 'stream', name: 'Stream', icon: Stream },
-  { id: 'birds', name: 'Birds', icon: Birds },
-  { id: 'summer-night', name: 'Summer Night', icon: SummerNight },
-  { id: 'train', name: 'Train', icon: Train },
-  { id: 'boat', name: 'Boat', icon: Boat },
-  { id: 'city', name: 'City', icon: City },
-  { id: 'coffee-shop', name: 'Coffe Shop', icon: CoffeeShop },
-  { id: 'fireplace', name: 'Fireplace', icon: FirePlace },
-  { id: 'pink-noise', name: 'Pink Noise', icon: PinkNoise },
-  { id: 'white-noise', name: 'White Noise', icon: WhiteNoise },
+export const sounds: { id: string; name: string; icon: Component }[] = [
+  { id: 'rain', name: 'Rain', icon: Rain as unknown as Component },
+  { id: 'storm', name: 'Storm', icon: Storm as unknown as Component },
+  { id: 'wind', name: 'Wind', icon: Wind as unknown as Component },
+  { id: 'waves', name: 'Waves', icon: Waves as unknown as Component },
+  { id: 'stream', name: 'Stream', icon: Stream as unknown as Component },
+  { id: 'birds', name: 'Birds', icon: Birds as unknown as Component },
+  { id: 'summer-night', name: 'Summer Night', icon: SummerNight as unknown as Component },
+  { id: 'train', name: 'Train', icon: Train as unknown as Component },
+  { id: 'boat', name: 'Boat', icon: Boat as unknown as Component},
+  { id: 'city', name: 'City', icon: City  as unknown as Component},
+  { id: 'coffee-shop', name: 'Coffe Shop', icon: CoffeeShop  as unknown as Component},
+  { id: 'fireplace', name: 'Fireplace', icon: FirePlace  as unknown as Component },
+  { id: 'pink-noise', name: 'Pink Noise', icon: PinkNoise as unknown as Component },
+  { id: 'white-noise', name: 'White Noise', icon: WhiteNoise  as unknown as Component},
 ];
