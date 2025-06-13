@@ -2,7 +2,7 @@ import { mount } from '@vue/test-utils';
 import { describe, expect, it, vi } from 'vitest';
 import SoundIcon from '@/components/SoundIcon.vue';
 import { usePreferredDark } from '@vueuse/core';
-import { computed } from 'vue';
+import { type Component, computed } from 'vue';
 import Birds from '@/assets/icons/birds.svg';
 
 vi.mock('@vueuse/core', () => ({
@@ -15,7 +15,7 @@ describe('SoundIcon.vue', () => {
       props: {
         fileId: '123',
         active: true,
-        icon: Birds,
+        icon: Birds as unknown as Component,
       },
     });
 
@@ -27,7 +27,7 @@ describe('SoundIcon.vue', () => {
       props: {
         fileId: '123',
         active: true,
-        icon: Birds,
+        icon: Birds as unknown as Component,
       },
     });
 
@@ -40,7 +40,7 @@ describe('SoundIcon.vue', () => {
       props: {
         fileId: '123',
         active: false,
-        icon: Birds,
+        icon: Birds as unknown as Component,
       },
     });
 
@@ -55,7 +55,7 @@ describe('SoundIcon.vue', () => {
       props: {
         fileId: '123',
         active: false,
-        icon: Birds,
+        icon: Birds as unknown as Component,
       },
     });
 
@@ -69,7 +69,7 @@ describe('SoundIcon.vue', () => {
       props: {
         fileId: '123',
         active: false,
-        icon: Birds,
+        icon: Birds as unknown as Component,
       },
     });
 
