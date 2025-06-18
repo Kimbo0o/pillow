@@ -9,5 +9,5 @@
 - [X] Profiles
 - [X] Dark Mode
 - [X] Keyboard Navigation
-- [ ] Unit Tests
+- [X] Unit Tests
 - [X] Update icon
