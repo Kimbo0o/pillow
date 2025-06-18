@@ -11,18 +11,21 @@
             class="p-2 rounded-md border-1 border-zinc-400 dark:text-gray-200"
             :class="{ 'border-red-500 ': nameValidationError }"
             @keydown.enter="saveNewPreset"
+            data-testid="new-preset-name-input"
           />
           <div v-if="nameValidationError" class="text-red-500">{{ nameValidationError }}</div>
         </div>
         <button
           @click="saveNewPreset"
           class="px-4 py-2 rounded-md cursor-pointer bg-indigo-500 text-white hover:bg-indigo-400"
+          data-testid="save-new-preset-btn"
         >
           Save
         </button>
         <button
           @click="onCancelCreatingPresetClick"
           class="px-4 py-2 rounded-md cursor-pointer border-1 border-b-indigo-500 text-indigo-500 hover:bg-indigo-50 dark:hover:bg-zinc-800"
+          data-testid="save-new-preset-cancel-btn"
         >
           Cancel
         </button>
@@ -35,6 +38,7 @@
             @change="onPresetChange"
             :value="presetsStore.currentPresetName"
             class="cursor-pointer dark:text-gray-200 dark:bg-zinc-700"
+            data-testid="preset-select"
           >
             <option
               v-for="presetName of presetsStore.existingPresetNames"
@@ -57,6 +61,7 @@
           title="Save current settings as new preset"
           class="cursor-pointer"
           @click="onSaveNewPresetClick"
+          data-testid="save-current-preset-btn"
         >
           <BookmarkIcon class="w-[24px] h-[24px] fill-indigo-500" />
         </button>
