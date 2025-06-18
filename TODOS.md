@@ -10,4 +10,4 @@
 - [X] Dark Mode
 - [X] Keyboard Navigation
 - [ ] Unit Tests
-- [ ] Update icon
+- [X] Update icon
