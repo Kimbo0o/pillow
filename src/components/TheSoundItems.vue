@@ -7,6 +7,7 @@
         :file-id="sound.id"
         :name="sound.name"
         :icon="sound.icon"
+        data-testid="sound-item"
       />
     </div>
   </div>

@@ -64,22 +64,4 @@ describe('SoundItem.vue', () => {
 
     expect(audioSource.attributes('src')).toBe('/sounds/test-id.ogg');
   });
-
-  it('plays or pauses audio based on active state and store settings', async () => {
-    // const soundsStore = useSoundsStore();
-    // const playMock = vi.fn();
-    // // const pauseMock = vi.fn();
-    // HTMLAudioElement.prototype.play = playMock;
-    // // HTMLAudioElement.prototype.pause = pauseMock;
-    //
-    // soundsStore.activeSounds = [props.fileId];
-    // soundsStore.playingActiveSounds = true;
-    //
-    // await mount(SoundItem, { props });
-    // expect(playMock).toHaveBeenCalled();
-    // soundsStore.playingActiveSounds = false;
-    // await vi.dynamicImportSettled();
-    // expect(pauseMock).toHaveBeenCalled();
-    // TODO: Fix test
-  });
 });
