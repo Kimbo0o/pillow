@@ -7,7 +7,7 @@ import { computed, ref } from 'vue';
 interface Preset {
   name: string;
   activeSounds: string[];
-  soundVolumes: any;
+  soundVolumes: object;
 }
 
 export const usePresetsStore = defineStore('presets', () => {

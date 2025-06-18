@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import SoundItem from '@/components/SoundItem.vue';
 import { useSoundsStore } from '@/stores/sounds.ts';
 import { useVolumeStore } from '@/stores/volume.ts';
